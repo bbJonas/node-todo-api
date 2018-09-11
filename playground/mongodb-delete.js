@@ -1,5 +1,5 @@
 // const MongoClient = require('mongodb').MongoClient;
-const {MongoClient, ObjectID} = require('mongodb');
+const {MongoClient, ObjectId} = require('mongodb');
 
 MongoClient.connect('mongodb://localhost:27017/TodoApp', {useNewUrlParser: true}, (err, client) => {
   if (err) {
@@ -29,11 +29,11 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', {useNewUrlParser: true}
 // });
 
 // findOneAndDelete from Users
-db.collection('Users').findOneAndDelete({
-  _id: new ObjectID('5b96604b31d42517681bb559')
-}).then((result) => {
-  console.log(result);
-});
+// db.collection('Users').findOneAndDelete({
+//   _id: new ObjectId('5b96604b31d42517681bb559')
+// }).then((result) => {
+//   console.log(result);
+// });
 
   // client.close();
 });

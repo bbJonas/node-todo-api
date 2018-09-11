@@ -1,5 +1,5 @@
 // const MongoClient = require('mongodb').MongoClient;
-const {MongoClient, ObjectID} = require('mongodb');
+const {MongoClient, ObjectId} = require('mongodb');
 
 MongoClient.connect('mongodb://localhost:27017/TodoApp', {useNewUrlParser: true}, (err, client) => {
   if (err) {
@@ -9,7 +9,7 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', {useNewUrlParser: true}
   const db = client.db('TodoApp');
 
   // db.collection('Todos').find({
-  //   _id: new ObjectID('5b96631c231cd7738826b5ae')
+  //   _id: new ObjectId('5b96631c231cd7738826b5ae')
   // }).toArray().then((docs) => {
   //   console.log('Todos');
   //   console.log(JSON.stringify(docs, undefined, 2));
