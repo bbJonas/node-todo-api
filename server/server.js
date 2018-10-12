@@ -3,6 +3,7 @@ require('./config/config');
 const _ = require('lodash')
 const express = require('express');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcryptjs');
 
 const {ObjectId} = require('mongodb');
 
@@ -123,6 +124,42 @@ app.post('/users', (req, res) => {
 app.get('/users/me', authenticate, (req, res) => {
   res.send(req.user)
 });
+
+
+// POST /users/login {email, password}
+app.post('/users/login', (req, res) => {
+  var body = _.pick(req.body, ['email', 'password']);
+
+  User.findByCredentials(body.email, body.password).then((user) => {
+    return user.generateAuthToken().then((token) => {
+      res.header('x-auth', token).send(user);
+    });
+  }).catch((e) => {
+    res.status(400).send();
+  });
+});
+
+
+// var existingUser = User.findOne({email: req.body.email})
+// if (!existingUser) {
+//   res.status(400).send({});
+// }
+// var correctPassword = bcrypt.compare(req.body.password, existingUser.password, (err, res) => {
+//   console.log(res);
+// });
+//
+// if (existingUser && correctPassword) {
+//   existingUser.generateAuthToken().then((token) => {
+//     res.header('x-auth', token).send(existingUser);
+//   }).catch((e) => {
+//     res.status(400).send(e);
+//   });
+// }
+// else {
+//   res.status(400).send(existingUser);
+// }
+
+
 
 
 app.listen(port, () => {
