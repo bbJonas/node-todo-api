@@ -140,27 +140,6 @@ app.post('/users/login', (req, res) => {
 });
 
 
-// var existingUser = User.findOne({email: req.body.email})
-// if (!existingUser) {
-//   res.status(400).send({});
-// }
-// var correctPassword = bcrypt.compare(req.body.password, existingUser.password, (err, res) => {
-//   console.log(res);
-// });
-//
-// if (existingUser && correctPassword) {
-//   existingUser.generateAuthToken().then((token) => {
-//     res.header('x-auth', token).send(existingUser);
-//   }).catch((e) => {
-//     res.status(400).send(e);
-//   });
-// }
-// else {
-//   res.status(400).send(existingUser);
-// }
-
-
-
 
 app.listen(port, () => {
   console.log(`Started on port ${port}`);
